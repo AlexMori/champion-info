@@ -1,0 +1,15 @@
+{
+  "name": "champion-info",
+  "version": "1.0.0",
+  "dependencies": {
+    "@serverless-chrome/lambda": "^1.0.0-55",
+    "canvas": "^2.6.1",
+    "image-clipper": "^0.4.4",
+    "puppeteer-core": "^2.1.1",
+    "serverless-plugin-chrome": "^1.0.0-55.3",
+    "superagent": "^5.2.2"
+  },
+  "devDependencies": {
+    "chrome-launcher": "^0.13.0"
+  }
+}

@@ -23,10 +23,12 @@ org: alexcanton92
 provider:
   name: aws
   runtime: nodejs12.x
+  memorySize: 2536
+  timeout: 180
 
 # you can overwrite defaults here
-#  stage: dev
-#  region: us-east-1
+  stage: dev
+  region: eu-west-1
 
 # you can add statements to the Lambda function's IAM Role here
 #  iamRoleStatements:
@@ -58,8 +60,27 @@ provider:
 #    - exclude-me-dir/**
 
 functions:
-  hello:
-    handler: handler.hello
+  champion-info:
+    handler: handler.info
+    environment:
+        DEBUG: 0
+
+package:
+  exclude:
+    - node_modules/puppeteer/.local-chromium/**
+
+plugins:
+  - serverless-plugin-chrome
+
+custom:
+  chrome:
+    flags:
+      - --window-size=1150,1700 # Letter size
+      - --hide-scrollbars
+      - --ignore-certificate-errors
+      - --headless
+    functions:
+      - champion-info
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
