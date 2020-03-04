@@ -4,10 +4,11 @@ const getChromeInstance = require("./getChromeInstance");
 const puppeteer = require("puppeteer-core");
 const canvas = require('canvas');
 const Clipper = require('image-clipper');
+const fs = require('fs');
 
 module.exports.info = async event => {
 
-    const championName = event;
+    const championName = event.queryStringParameters.championName;
 
     const chrome = await getChromeInstance();
 
@@ -44,17 +45,12 @@ module.exports.info = async event => {
             });
     });
 
+    const imageUrl = 'data:image/jpeg;base64,' + fs.readFileSync(`${championName}.jpg`, { encoding: 'base64' });
+
     await browser.close();
 
     return {
-    statusCode: 200,
-    body: JSON.stringify(
-      {
-        message: 'Go Serverless v1.0! Your function executed successfully!',
-        input: championName,
-      },
-      null,
-      2
-    ),
-  };
+        statusCode: 200,
+        body: imageUrl
+    };
 };

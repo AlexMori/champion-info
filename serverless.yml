@@ -13,8 +13,8 @@
 
 service: champion-info
 # app and org for use with dashboard.serverless.com
-app: champion-info-app
-org: alexcanton92
+#app: champion-info-app
+#org: alexcanton92
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
@@ -62,8 +62,6 @@ provider:
 functions:
   champion-info:
     handler: handler.info
-    environment:
-        DEBUG: 0
 
 package:
   exclude:
